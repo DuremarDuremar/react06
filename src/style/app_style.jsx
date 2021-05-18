@@ -39,7 +39,7 @@ export const Content = styled.div`
   max-width: 1366px;
   height: 100vh;
   background-color: #8b4513;
-  padding: 8px 5px;
+  padding: 0 5px;
   display: flex;
   flex-direction: column;
 `;
@@ -58,9 +58,16 @@ export const Item = styled.ul`
   display: flex;
   padding: 5px;
   cursor: pointer;
-  &:not(:last-child) {
-    border-bottom: 1px solid #8b4513;
+  transition: 0.25s ease-in-out all;
+  color: ${(props) => (props.active ? "#fff" : "black")};
+  font-weight: ${(props) => (props.active ? "700" : "500")};
+  &:not(:first-child) {
+    border-top: 1px solid #8b4513;
   }
+  &:first-child {
+    border-top: 6px solid #8b4513;
+  }
+
   li {
     &:nth-child(1) {
       flex: 0 0 10%;
@@ -82,3 +89,5 @@ export const Item = styled.ul`
     background-color: #fff;
   }
 `;
+
+export const InfoItem = styled.div``;
