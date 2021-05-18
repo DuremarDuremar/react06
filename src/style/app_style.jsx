@@ -42,6 +42,7 @@ export const Content = styled.div`
   padding: 0 5px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 export const List = styled.section`
@@ -49,23 +50,27 @@ export const List = styled.section`
   background-color: #deb887;
   overflow-y: scroll;
 `;
-export const Info = styled.section`
-  flex: 0 0 25%;
-  background-color: #d2b48c;
-`;
 
 export const Item = styled.ul`
   display: flex;
   padding: 5px;
-  cursor: pointer;
   transition: 0.25s ease-in-out all;
-  color: ${(props) => (props.active ? "#fff" : "black")};
-  font-weight: ${(props) => (props.active ? "700" : "500")};
+  text-align: center;
+  overflow-x: auto;
+  min-width: 300px;
   &:not(:first-child) {
+    color: ${(props) => (props.active ? "#fff" : "black")};
+    font-weight: ${(props) => (props.active ? "700" : "500")};
     border-top: 1px solid #8b4513;
+    cursor: pointer;
+    &:hover {
+      background-color: #fff;
+    }
   }
   &:first-child {
     border-top: 6px solid #8b4513;
+    font-size: 20px;
+    font-style: italic;
   }
 
   li {
@@ -85,9 +90,42 @@ export const Item = styled.ul`
       flex: 0 0 18%;
     }
   }
-  &:hover {
-    background-color: #fff;
+`;
+
+export const Footer = styled.section`
+  flex: 0 0 25%;
+  display: flex;
+  background-color: #d2b48c;
+`;
+
+export const Add = styled.div`
+  background-color: #f0e68c;
+  flex: 0 0 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #c0c0c0;
+    transition: 0.35s ease-in-out all;
+    &:hover {
+      background-color: #708090;
+    }
   }
 `;
 
-export const InfoItem = styled.div``;
+export const Info = styled.section`
+  background-color: #d2b48c;
+  flex: 0 0 80%;
+`;
+
+export const InfoItem = styled.ul`
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;

@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Content, List, Info, Item, InfoItem, Global } from "./style/app_style";
+import {
+  Content,
+  Footer,
+  List,
+  Add,
+  Info,
+  Item,
+  InfoItem,
+  Global,
+} from "./style/app_style";
 import { getAxios } from "./components/axios";
 
 const App = () => {
@@ -21,11 +30,18 @@ const App = () => {
         {items && (
           <>
             <List>
+              <Item>
+                <li>ID</li>
+                <li>FirstName</li>
+                <li>LastName</li>
+                <li>Email</li>
+                <li>Phone</li>
+              </Item>
               {items.map((item, index) => {
                 return (
                   <Item
                     key={index}
-                    active={item.id === info.id ? 1 : 0}
+                    active={info && item.id === info.id ? 1 : 0}
                     onClick={() => setInfo(item)}
                   >
                     <li>{item.id}</li>
@@ -37,18 +53,53 @@ const App = () => {
                 );
               })}
             </List>
-            <Info>
-              {info && (
-                <InfoItem>
-                  <textarea value={info.description} readOnly />
-                  Адрес проживания:
-                  <b>{info.address.streetAddress}</b>
-                  Город: <b>{info.address.city}</b>
-                  Провинция/штат: <b>{info.address.state}</b>
-                  Индекс: <b>{info.address.zip}</b>
-                </InfoItem>
-              )}
-            </Info>
+            <Footer>
+              <Add>
+                <button>
+                  <i className="fas fa-user-plus fa-4x"></i>
+                </button>
+              </Add>
+              <Info>
+                {info && (
+                  <InfoItem>
+                    <li>
+                      Выбран пользователь&nbsp;
+                      <b>
+                        {info.firstName}&nbsp;
+                        {info.lastName}
+                      </b>
+                    </li>
+                    <li>
+                      Описание:&nbsp;
+                      <textarea
+                        value={info.description}
+                        readOnly
+                        cols="40"
+                        rows="3"
+                      />
+                    </li>
+                    <li>
+                      <span>
+                        Адрес проживания: &nbsp;
+                        <b>{info.address.streetAddress}</b>
+                      </span>
+                      <span>
+                        &nbsp; Город:&nbsp;<b>{info.address.city}</b>
+                      </span>
+                    </li>
+
+                    <li>
+                      <span>
+                        Провинция/штат: &nbsp;<b>{info.address.state}</b>
+                      </span>
+                      <span>
+                        &nbsp; Индекс: <b>{info.address.zip}</b>
+                      </span>
+                    </li>
+                  </InfoItem>
+                )}
+              </Info>
+            </Footer>
           </>
         )}
       </Content>
