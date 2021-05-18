@@ -7,6 +7,8 @@ import {
   Info,
   Item,
   InfoItem,
+  Modal,
+  Form,
   Global,
 } from "./style/app_style";
 import { getAxios } from "./components/axios";
@@ -14,8 +16,9 @@ import { getAxios } from "./components/axios";
 const App = () => {
   const [items, setItems] = useState(null);
   const [info, setInfo] = useState(null);
+  const [modal, setModal] = useState(false);
 
-  console.log(info);
+  console.log(modal);
 
   useEffect(() => {
     getAxios().then((response) => {
@@ -55,7 +58,7 @@ const App = () => {
             </List>
             <Footer>
               <Add>
-                <button>
+                <button onClick={() => setModal(true)}>
                   <i className="fas fa-user-plus fa-4x"></i>
                 </button>
               </Add>
@@ -100,6 +103,9 @@ const App = () => {
                 )}
               </Info>
             </Footer>
+            <Modal onClick={() => setModal(false)} modal={modal}>
+              <Form onClick={(e) => e.stopPropagation()}></Form>
+            </Modal>
           </>
         )}
       </Content>
