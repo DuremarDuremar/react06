@@ -42,7 +42,8 @@ export const Label = styled.label`
   background-color: #deb887;
   flex: 1 1 auto;
 
-  &:nth-child(2n) {
+  &:not(:last-child) {
+    padding-bottom: 7px;
   }
   p {
     color: #708090;

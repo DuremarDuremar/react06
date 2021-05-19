@@ -17,7 +17,7 @@ const App = () => {
   const [info, setInfo] = useState(null);
   const [modal, setModal] = useState(false);
 
-  // console.log(modal);
+  console.log(info);
 
   useEffect(() => {
     getAxios().then((response) => {
