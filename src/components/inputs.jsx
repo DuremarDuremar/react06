@@ -13,6 +13,19 @@ const Inputs = ({ modal, setModal, items, setItems }) => {
   console.log(errors);
 
   const addItem = (newItem) => {
+    const tel = (n) => {
+      let newPhone = [...n];
+      newPhone = [
+        "(",
+        ...newPhone.slice(0, 3),
+        ")",
+        ...newPhone.slice(3, 6),
+        "-",
+        ...newPhone.slice(6),
+      ];
+      return newPhone.join("");
+    };
+
     const item = {
       address: {
         city: newItem.city || "_",
@@ -24,7 +37,7 @@ const Inputs = ({ modal, setModal, items, setItems }) => {
       email: newItem.email,
       firstName: newItem.firstName,
       lastName: newItem.lastName,
-      phone: newItem.phone,
+      phone: tel(newItem.phone),
       id: newItem.id,
     };
     setItems([item, ...items]);
@@ -83,11 +96,11 @@ const Inputs = ({ modal, setModal, items, setItems }) => {
 
         <Label htmlFor="phone" alert={errors.phone ? 1 : 0}>
           <input
-            type="tel"
+            type="number"
             id="phone"
-            {...register("phone", { required: true, minLength: 7 })}
+            {...register("phone", { required: true, minLength: 10 })}
           />
-          <p>phone</p>
+          <p>phone (minimum Length 10)</p>
         </Label>
 
         {dop && (
