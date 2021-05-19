@@ -33,6 +33,11 @@ button {
 input{
   outline: none;
 }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 `;
 
 export const Content = styled.div`
@@ -129,26 +134,4 @@ export const InfoItem = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-`;
-
-export const Modal = styled.div`
-  display: ${(props) => (props.modal ? "flex" : "none")};
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgb(192, 192, 192, 0.85);
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-
-export const Form = styled.form`
-  width: 400px;
-  height: 600px;
-  border-radius: 12%;
-  background-color: #708090;
-  cursor: default;
 `;

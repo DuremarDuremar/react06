@@ -7,18 +7,17 @@ import {
   Info,
   Item,
   InfoItem,
-  Modal,
-  Form,
   Global,
 } from "./style/app_style";
 import { getAxios } from "./components/axios";
+import Inputs from "./components/inputs";
 
 const App = () => {
   const [items, setItems] = useState(null);
   const [info, setInfo] = useState(null);
   const [modal, setModal] = useState(false);
 
-  console.log(modal);
+  // console.log(modal);
 
   useEffect(() => {
     getAxios().then((response) => {
@@ -103,9 +102,7 @@ const App = () => {
                 )}
               </Info>
             </Footer>
-            <Modal onClick={() => setModal(false)} modal={modal}>
-              <Form onClick={(e) => e.stopPropagation()}></Form>
-            </Modal>
+            <Inputs modal={modal} setModal={setModal} />
           </>
         )}
       </Content>
