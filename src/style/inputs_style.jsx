@@ -43,16 +43,16 @@ export const Label = styled.label`
   flex: 1 1 auto;
 
   &:not(:last-child) {
-    padding-bottom: 7px;
+    padding-bottom: 8px;
   }
   p {
     color: #708090;
     text-align: center;
+    font-size: 12px;
   }
 
   input {
-    background-color: #708090;
-    color: MintCream;
+    border: ${(props) => props.alert && "1px solid red"};
     font-size: 15px;
     height: 20px;
   }

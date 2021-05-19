@@ -102,7 +102,12 @@ const App = () => {
                 )}
               </Info>
             </Footer>
-            <Inputs modal={modal} setModal={setModal} />
+            <Inputs
+              modal={modal}
+              setModal={setModal}
+              items={items}
+              setItems={setItems}
+            />
           </>
         )}
       </Content>

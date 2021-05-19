@@ -2,16 +2,33 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Modal, Form, Label } from "../style/inputs_style";
 
-const Inputs = ({ modal, setModal }) => {
+const Inputs = ({ modal, setModal, items, setItems }) => {
   const [dop, setDop] = useState(false);
-  const [newItem, setNewItem] = useState({});
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  console.log(newItem);
+  console.log(errors);
+
+  const addItem = (newItem) => {
+    const item = {
+      address: {
+        city: newItem.city || "_",
+        state: newItem.state || "_",
+        streetAddress: newItem.street || "_",
+        zip: newItem.zip || "_",
+      },
+      description: newItem.description || " ",
+      email: newItem.email,
+      firstName: newItem.firstName,
+      lastName: newItem.lastName,
+      phone: newItem.phone,
+      id: newItem.id,
+    };
+    setItems([item, ...items]);
+  };
 
   return (
     <Modal
@@ -24,38 +41,38 @@ const Inputs = ({ modal, setModal }) => {
       <Form
         onClick={(e) => e.stopPropagation()}
         onSubmit={handleSubmit((data) => {
-          setNewItem(data);
+          addItem(data);
           reset();
         })}
       >
-        <Label htmlFor="id">
+        <Label htmlFor="id" alert={errors.id ? 1 : 0}>
           <input
             type="number"
             id="id"
-            {...register("id", { required: true })}
+            {...register("id", { required: true, minLength: 3 })}
           />
           <p>id</p>
         </Label>
 
-        <Label htmlFor="firstName">
+        <Label htmlFor="firstName" alert={errors.firstName ? 1 : 0}>
           <input
             type="text"
             id="firstName"
-            {...register("firstName", { required: true })}
+            {...register("firstName", { required: true, minLength: 3 })}
           />
           <p>firstName</p>
         </Label>
 
-        <Label htmlFor="lastName">
+        <Label htmlFor="lastName" alert={errors.lastName ? 1 : 0}>
           <input
             type="text"
             id="lastName"
-            {...register("lastName", { required: true })}
+            {...register("lastName", { required: true, minLength: 3 })}
           />
           <p>lastName</p>
         </Label>
 
-        <Label htmlFor="email">
+        <Label htmlFor="email" alert={errors.email ? 1 : 0}>
           <input
             type="email"
             id="email"
@@ -64,11 +81,11 @@ const Inputs = ({ modal, setModal }) => {
           <p>email</p>
         </Label>
 
-        <Label htmlFor="phone">
+        <Label htmlFor="phone" alert={errors.phone ? 1 : 0}>
           <input
             type="tel"
             id="phone"
-            {...register("phone", { required: true })}
+            {...register("phone", { required: true, minLength: 7 })}
           />
           <p>phone</p>
         </Label>
