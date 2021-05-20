@@ -41,6 +41,9 @@ const Inputs = ({ modal, setModal, items, setItems }) => {
       id: newItem.id,
     };
     setItems([item, ...items]);
+    if (errors !== {}) {
+      setModal(false);
+    }
   };
 
   return (

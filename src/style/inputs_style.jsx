@@ -46,7 +46,8 @@ export const Label = styled.label`
     padding-bottom: 8px;
   }
   p {
-    color: #708090;
+    /* color: #708090; */
+    color: ${(props) => (props.alert ? "red" : "#708090")};
     text-align: center;
     font-size: 12px;
   }
