@@ -14,6 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #8b4513;
   
 }
 code {
@@ -42,9 +43,9 @@ input{
 
 export const Content = styled.div`
   max-width: 1366px;
-  height: 100vh;
+  height: 768px;
   background-color: #8b4513;
-  padding: 0 5px;
+  padding: 15px 5px 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;

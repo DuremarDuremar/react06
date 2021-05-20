@@ -4,6 +4,7 @@ export const ContentFooter = styled.section`
   flex: 0 0 25%;
   display: flex;
   background-color: #d2b48c;
+  height: 100%;
 `;
 
 export const Add = styled.div`

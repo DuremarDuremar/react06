@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
   ContentHeader,
+  Search,
+  Options,
   List,
   Pagination,
   PagLi,
@@ -11,12 +13,13 @@ import { chunk } from "lodash";
 const Header = ({ items, info, setInfo }) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
   }, [items]);
 
-  console.log(pag);
+  console.log(menu);
 
   if (sortItems) {
     const renderPagination = () => {
@@ -35,6 +38,22 @@ const Header = ({ items, info, setInfo }) => {
 
     return (
       <ContentHeader>
+        <Search>
+          <Options onClick={() => setMenu(!menu)} menu={menu}>
+            <i
+              className={
+                menu
+                  ? "fas fa-chevron-circle-up fa-2x"
+                  : "fas fa-chevron-circle-down fa-2x"
+              }
+            ></i>
+            <ul>
+              <li>id</li>
+              <li>first name</li>
+              <li>last name</li>
+            </ul>
+          </Options>
+        </Search>
         <List>
           <Item>
             <li>ID</li>
