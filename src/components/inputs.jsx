@@ -10,7 +10,7 @@ const Inputs = ({ modal, setModal, items, setItems }) => {
     reset,
     formState: { errors },
   } = useForm();
-  console.log(errors);
+  // console.log(errors);
 
   const addItem = (newItem) => {
     const tel = (n) => {

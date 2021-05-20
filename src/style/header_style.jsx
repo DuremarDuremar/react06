@@ -8,7 +8,22 @@ export const ContentHeader = styled.section`
 
 export const List = styled.div``;
 
-export const Pagination = styled.div``;
+export const Pagination = styled.ul`
+  display: flex;
+  justify-content: center;
+`;
+
+export const PagLi = styled.li`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: ${(props) => (props.active ? "#fff" : "#f0e68c")};
+  text-align: center;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+`;
 
 export const Item = styled.ul`
   display: flex;
