@@ -14,6 +14,9 @@ export const Search = styled.div`
   flex: 0 0 15%;
   background: linear-gradient(to right, #f2c94c, #f2994a);
   position: relative;
+`;
+
+export const Form = styled.form`
   input {
     position: absolute;
     top: 20px;
