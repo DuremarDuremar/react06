@@ -3,23 +3,26 @@ import {
   ContentHeader,
   Search,
   Options,
+  Logo,
   List,
   Pagination,
   PagLi,
   Item,
 } from "../style/header_style";
+import logo from "../images/logo.png";
 import { chunk } from "lodash";
 
 const Header = ({ items, info, setInfo }) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
   const [menu, setMenu] = useState(false);
+  const [search, setSearch] = useState("id");
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
   }, [items]);
 
-  console.log(menu);
+  console.log(search);
 
   if (sortItems) {
     const renderPagination = () => {
@@ -48,11 +51,19 @@ const Header = ({ items, info, setInfo }) => {
               }
             ></i>
             <ul>
-              <li>id</li>
-              <li>first name</li>
-              <li>last name</li>
+              {["id", "first name", "last name"].map((item, index) => {
+                return (
+                  <li key={index} onClick={() => setSearch(item)}>
+                    {item}
+                  </li>
+                );
+              })}
             </ul>
           </Options>
+          <Logo>
+            <img src={logo} alt="logo" />
+          </Logo>
+          <input type="text" placeholder={search} />
         </Search>
         <List>
           <Item>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContentHeader = styled.section`
   flex: 0 0 75%;
-  background-color: #deb887;
+  background-color: #00223e;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
@@ -12,32 +12,50 @@ export const ContentHeader = styled.section`
 
 export const Search = styled.div`
   flex: 0 0 15%;
+  background: linear-gradient(to right, #f2c94c, #f2994a);
+  position: relative;
+  input {
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    height: 20px;
+    font-size: 15px;
+    font-style: italic;
+    padding-left: 5px;
+    border-radius: 5px;
+    &::placeholder {
+      color: rgb(112, 128, 144, 0.5);
+    }
+  }
 `;
 
 export const Options = styled.div`
   width: 40px;
-  min-height: 40px;
-  background-color: #708090;
+  height: 35px;
   text-align: center;
   cursor: pointer;
   position: relative;
 
   i {
     position: relative;
-    z-index: 1;
+    z-index: 3;
+    background-color: #708090;
+    border-radius: 50%;
   }
   ul {
     transition: 0.75s ease-in-out all;
-    background-color: #708090;
+    background-color: rgb(112, 128, 144, 0.7);
     transform: ${(props) =>
-      props.menu ? "translateY(-110px)" : "translateY(0)"};
-    z-index: 0;
+      props.menu ? "translateY(-10px)" : "translateY(-110px)"};
+    z-index: 1;
+    left: 4px;
     width: 130px;
     height: 70px;
     position: absolute;
     li {
-      opacity: ${(props) => (props.menu ? "0" : "1")};
+      opacity: ${(props) => (props.menu ? "1" : "0")};
       color: #fff;
+      font-style: italic;
       :hover {
         color: #708090;
         background-color: #fff;
@@ -46,8 +64,20 @@ export const Options = styled.div`
   }
 `;
 
+export const Logo = styled.div`
+  width: 100px;
+  height: 35px;
+  position: relative;
+  bottom: 11px;
+  opacity: 0.7;
+  img {
+    width: 100%;
+  }
+`;
+
 export const List = styled.div`
   flex: 0 0 75%;
+  background: linear-gradient(to bottom, #ffa17f, #00223e);
 `;
 
 export const Pagination = styled.ul`
@@ -55,6 +85,7 @@ export const Pagination = styled.ul`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  background: #00223e;
 `;
 
 export const PagLi = styled.li`

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import fon from "../images/fon.jpg";
 
 export const ContentFooter = styled.section`
   flex: 0 0 25%;
