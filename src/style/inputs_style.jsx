@@ -12,6 +12,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 3;
 `;
 
 export const Form = styled.form`
@@ -25,6 +26,8 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  z-index: 3;
   button {
     color: MintCream;
     background-color: #708090;

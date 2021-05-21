@@ -4,12 +4,12 @@ import fon from "../images/fon.jpg";
 export const ContentFooter = styled.section`
   flex: 0 0 25%;
   display: flex;
-  background-color: #d2b48c;
+  background: linear-gradient(to top, #ffa17f, #00223e);
   height: 100%;
 `;
 
 export const Add = styled.div`
-  background-color: #f0e68c;
+  background: linear-gradient(to top, #ffa17f, #00223e);
   flex: 0 0 20%;
   display: flex;
   align-items: center;
@@ -27,7 +27,8 @@ export const Add = styled.div`
 `;
 
 export const Info = styled.div`
-  background-color: #d2b48c;
+  background: linear-gradient(to left, #f2c94c, #f2994a);
+  border-radius: 50px;
   flex: 0 0 80%;
 `;
 

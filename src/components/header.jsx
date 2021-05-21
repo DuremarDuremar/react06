@@ -9,9 +9,10 @@ import {
   Pagination,
   PagLi,
   Item,
+  ItemLi,
 } from "../style/header_style";
 import logo from "../images/logo.png";
-import { chunk } from "lodash";
+import { chunk, sortBy } from "lodash";
 import { searchItems } from "../util/search";
 
 const Header = ({ items, info, setInfo }) => {
@@ -20,11 +21,20 @@ const Header = ({ items, info, setInfo }) => {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState("id");
   const [value, setValue] = useState("");
-  const [sort, setSort] = useState(false);
+  const [sort, setSort] = useState("id");
+  const [sortArrow, setSortArrow] = useState(false);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
   }, [items]);
+
+  useEffect(() => {
+    setSortItems((prev) => {
+      return sortArrow
+        ? chunk(sortBy(prev.flat(), [sort]).reverse(), 10)
+        : chunk(sortBy(prev.flat(), [sort]), 10);
+    });
+  }, [sort, sortArrow]);
 
   const onSearch = (e) => {
     let arr = searchItems(items, e, search);
@@ -35,8 +45,6 @@ const Header = ({ items, info, setInfo }) => {
       setSortItems(chunk(arr, 10));
     }
   };
-
-  console.log(sort);
 
   const renderPagination = () => {
     return [...new Array(sortItems.length).keys()].map((item) => {
@@ -87,21 +95,26 @@ const Header = ({ items, info, setInfo }) => {
       </Search>
       <List>
         <Item>
-          {["ID", "FirstName", "LastName", "Email", "Phone"].map(
+          {["id", "firstName", "lastName", "email", "phone"].map(
             (item, index) => {
               return (
-                <li key={index}>
-                  <p onClick={() => setSort(!sort)}>
+                <ItemLi key={index} change={item === sort ? 1 : 0}>
+                  <p
+                    onClick={() => {
+                      setSortArrow(!sortArrow);
+                      setSort(item);
+                    }}
+                  >
                     <span>{item}</span> <br />
                     <i
                       className={
-                        sort
+                        sortArrow
                           ? "fas fa-caret-up fa-lg"
                           : "fas fa-caret-down fa-lg"
                       }
                     ></i>
                   </p>
-                </li>
+                </ItemLi>
               );
             }
           )}
@@ -114,11 +127,11 @@ const Header = ({ items, info, setInfo }) => {
                 active={info && item.id === info.id ? 1 : 0}
                 onClick={() => setInfo(item)}
               >
-                <li>{item.id}</li>
-                <li>{item.firstName}</li>
-                <li>{item.lastName}</li>
-                <li>{item.email}</li>
-                <li>{item.phone}</li>
+                <ItemLi>{item.id}</ItemLi>
+                <ItemLi>{item.firstName}</ItemLi>
+                <ItemLi>{item.lastName}</ItemLi>
+                <ItemLi>{item.email}</ItemLi>
+                <ItemLi>{item.phone}</ItemLi>
               </Item>
             );
           })}

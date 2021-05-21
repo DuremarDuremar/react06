@@ -55,6 +55,7 @@ export const Options = styled.div`
     width: 130px;
     height: 70px;
     position: absolute;
+    border-radius: 10px;
     li {
       opacity: ${(props) => (props.menu ? "1" : "0")};
       color: #fff;
@@ -131,35 +132,37 @@ export const Item = styled.ul`
     height: 50px;
     z-index: 2;
     position: relative;
+    li {
+      text-transform: capitalize;
+    }
+  }
+`;
 
-    p {
-      cursor: pointer;
-
-      :hover i {
-        opacity: 1;
-      }
+export const ItemLi = styled.li`
+  &:nth-child(1) {
+    flex: 0 0 10%;
+  }
+  &:nth-child(2) {
+    flex: 0 0 20%;
+  }
+  &:nth-child(3) {
+    flex: 0 0 20%;
+  }
+  &:nth-child(4) {
+    flex: 0 0 32%;
+  }
+  &:nth-child(5) {
+    flex: 0 0 18%;
+  }
+  p {
+    color: ${(props) => (props.change ? "#fff" : "black")};
+    cursor: pointer;
+    :hover i {
+      opacity: 1;
     }
     i {
       transition: 0.55s ease-in-out all;
       opacity: 0;
-    }
-  }
-
-  li {
-    &:nth-child(1) {
-      flex: 0 0 10%;
-    }
-    &:nth-child(2) {
-      flex: 0 0 20%;
-    }
-    &:nth-child(3) {
-      flex: 0 0 20%;
-    }
-    &:nth-child(4) {
-      flex: 0 0 32%;
-    }
-    &:nth-child(5) {
-      flex: 0 0 18%;
     }
   }
 `;
