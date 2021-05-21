@@ -10,11 +10,9 @@ export function searchItems(items, term, arg) {
   return items.filter((item) => {
     if (arg === "first name") {
       return item.firstName.toLowerCase().indexOf(term.toLowerCase()) > -1;
-    }
-    if (arg === "last name") {
+    } else if (arg === "last name") {
       return item.lastName.toLowerCase().indexOf(term.toLowerCase()) > -1;
-    }
-    if (arg === "id") {
+    } else {
       return item.id.toString().indexOf(term) > -1;
     }
   });

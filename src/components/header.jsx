@@ -20,6 +20,7 @@ const Header = ({ items, info, setInfo }) => {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState("id");
   const [value, setValue] = useState("");
+  const [sort, setSort] = useState(false);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
@@ -35,7 +36,7 @@ const Header = ({ items, info, setInfo }) => {
     }
   };
 
-  console.log(search);
+  console.log(sort);
 
   const renderPagination = () => {
     return [...new Array(sortItems.length).keys()].map((item) => {
@@ -86,11 +87,24 @@ const Header = ({ items, info, setInfo }) => {
       </Search>
       <List>
         <Item>
-          <li>ID</li>
-          <li>FirstName</li>
-          <li>LastName</li>
-          <li>Email</li>
-          <li>Phone</li>
+          {["ID", "FirstName", "LastName", "Email", "Phone"].map(
+            (item, index) => {
+              return (
+                <li key={index}>
+                  <p onClick={() => setSort(!sort)}>
+                    <span>{item}</span> <br />
+                    <i
+                      className={
+                        sort
+                          ? "fas fa-caret-up fa-lg"
+                          : "fas fa-caret-down fa-lg"
+                      }
+                    ></i>
+                  </p>
+                </li>
+              );
+            }
+          )}
         </Item>
         {sortItems &&
           sortItems[pag].map((item, index) => {

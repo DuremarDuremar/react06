@@ -21,7 +21,7 @@ export const Form = styled.form`
     position: absolute;
     top: 20px;
     left: 150px;
-    height: 20px;
+    height: 30px;
     font-size: 15px;
     font-style: italic;
     padding-left: 5px;
@@ -42,12 +42,12 @@ export const Options = styled.div`
   i {
     position: relative;
     z-index: 3;
-    background-color: #708090;
+    background-color: #f2c94c;
     border-radius: 50%;
   }
   ul {
     transition: 0.75s ease-in-out all;
-    background-color: rgb(112, 128, 144, 0.7);
+    background-color: rgb(0, 34, 62, 0.7);
     transform: ${(props) =>
       props.menu ? "translateY(-10px)" : "translateY(-110px)"};
     z-index: 1;
@@ -128,6 +128,21 @@ export const Item = styled.ul`
     border-top: 6px solid #8b4513;
     font-size: 20px;
     font-style: italic;
+    height: 50px;
+    z-index: 2;
+    position: relative;
+
+    p {
+      cursor: pointer;
+
+      :hover i {
+        opacity: 1;
+      }
+    }
+    i {
+      transition: 0.55s ease-in-out all;
+      opacity: 0;
+    }
   }
 
   li {
