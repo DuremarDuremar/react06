@@ -10,8 +10,8 @@ const App = () => {
   const [info, setInfo] = useState(null);
   const [modal, setModal] = useState(false);
   const [range, setRange] = useState("0");
-  console.log("range", typeof range);
-
+  console.log("range", range);
+  console.log("items", items);
   useEffect(() => {
     getAxios(range).then((response) => {
       setItems(response);

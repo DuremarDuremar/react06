@@ -176,9 +176,27 @@ export const Pagination = styled.ul`
   justify-content: center;
   align-items: flex-end;
   background: #00223e;
+  i {
+    color: #f2b14b;
+    padding-bottom: 15px;
+    cursor: pointer;
+  }
+  .fa-angle-left {
+    padding-right: 15px;
+  }
+  .fa-angle-right {
+    padding-left: 15px;
+  }
+  .fa-angle-double-left {
+    padding-right: 10px;
+  }
+  .fa-angle-double-right {
+    padding-left: 10px;
+  }
 `;
 
 export const PagLi = styled.li`
+  display: ${(props) => props.none && "none"};
   width: 25px;
   height: 25px;
   border-radius: 50%;

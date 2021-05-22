@@ -26,6 +26,7 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
   const [value, setValue] = useState("");
   const [sort, setSort] = useState("id");
   const [sortArrow, setSortArrow] = useState(false);
+  const [visibl, setVisibl] = useState([0, 1, 2, 3, 4]);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
@@ -38,6 +39,10 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
         : chunk(sortBy(prev.flat(), [sort]), 10);
     });
   }, [sort, sortArrow]);
+
+  console.log("vis", visibl);
+  console.log("pag", pag);
+  // console.log(sortItems.length - 1);
 
   const onSearch = (e) => {
     let arr = searchItems(items, e, search);
@@ -56,11 +61,40 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
           key={item}
           onClick={() => setPag(item)}
           active={item === pag ? 1 : 0}
+          none={!visibl.includes(item)}
         >
           {item + 1}
         </PagLi>
       );
     });
+  };
+
+  const slider = (arg, double) => {
+    if (arg === "next") {
+      setPag((prev) => (double ? prev + 10 : prev + 1));
+      if (pag === visibl[visibl.length - 1] && !double) {
+        setVisibl((prev) => {
+          return prev.map((item) => item + 1);
+        });
+      }
+      if (double) {
+        setVisibl((prev) => {
+          return prev.map((item) => item + 10);
+        });
+      }
+    } else {
+      setPag((prev) => (double ? prev - 10 : prev - 1));
+      if (pag === visibl[0] && !double) {
+        setVisibl((prev) => {
+          return prev.map((item) => item - 1);
+        });
+      }
+      if (double) {
+        setVisibl((prev) => {
+          return prev.map((item) => item - 10);
+        });
+      }
+    }
   };
 
   return (
@@ -156,7 +190,40 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
             );
           })}
       </List>
-      {sortItems && <Pagination>{renderPagination()}</Pagination>}
+      {sortItems && (
+        <Pagination>
+          {Number(range) && visibl[0] !== 0 ? (
+            <>
+              {visibl[0] - 10 > 0 && (
+                <i
+                  className="fas fa-angle-double-left fa-2x"
+                  onClick={() => slider("prev", "double")}
+                ></i>
+              )}
+              <i
+                className="fas fa-angle-left fa-2x"
+                onClick={() => slider("prev")}
+              ></i>
+            </>
+          ) : null}
+          {renderPagination()}
+          {Number(range) &&
+          visibl[visibl.length - 1] !== sortItems.length - 1 ? (
+            <>
+              <i
+                className="fas fa-angle-right fa-2x"
+                onClick={() => slider("next")}
+              ></i>
+              {visibl[visibl.length - 1] + 10 < sortItems.length - 1 && (
+                <i
+                  className="fas fa-angle-double-right fa-2x"
+                  onClick={() => slider("next", "double")}
+                ></i>
+              )}
+            </>
+          ) : null}
+        </Pagination>
+      )}
     </ContentHeader>
   );
 };
