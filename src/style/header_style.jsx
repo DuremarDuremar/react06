@@ -79,7 +79,7 @@ export const Logo = styled.div`
   width: 100px;
   height: 35px;
   position: relative;
-  bottom: 11px;
+  /* bottom: 11px; */
   opacity: 0.7;
   img {
     width: 100%;
@@ -120,6 +120,49 @@ export const Range = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  input {
+    outline: 0;
+    border: 0;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 80px;
+    max-width: 100%;
+    cursor: pointer;
+    font-style: italic;
+    font-size: 12px;
+    :after {
+      content: "min";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      left: 3px;
+      top: 3px;
+    }
+    :before {
+      content: "max";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: 18px;
+      top: 3px;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 20px;
+      -webkit-appearance: none;
+      background-color: #f2b14b;
+      box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      cursor: pointer;
+      transform: scale(3);
+      position: relative;
+      z-index: 1;
+    }
+  }
 `;
 
 export const List = styled.div`

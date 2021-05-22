@@ -9,14 +9,14 @@ const App = () => {
   const [items, setItems] = useState(null);
   const [info, setInfo] = useState(null);
   const [modal, setModal] = useState(false);
-
-  // console.log(info);
+  const [range, setRange] = useState("0");
+  console.log("range", typeof range);
 
   useEffect(() => {
-    getAxios().then((response) => {
+    getAxios(range).then((response) => {
       setItems(response);
     });
-  }, []);
+  }, [range]);
 
   return (
     <>
@@ -24,7 +24,13 @@ const App = () => {
       <Content>
         {items && (
           <>
-            <Header items={items} info={info} setInfo={setInfo} />
+            <Header
+              items={items}
+              info={info}
+              setInfo={setInfo}
+              range={range}
+              setRange={setRange}
+            />
             <Footer info={info} setModal={setModal} />
             <Inputs
               modal={modal}

@@ -18,7 +18,7 @@ import logo from "../images/logo.png";
 import { chunk, sortBy } from "lodash";
 import { searchItems } from "../util/search";
 
-const Header = ({ items, info, setInfo }) => {
+const Header = ({ items, info, setInfo, range, setRange }) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
   const [menu, setMenu] = useState(false);
@@ -26,9 +26,6 @@ const Header = ({ items, info, setInfo }) => {
   const [value, setValue] = useState("");
   const [sort, setSort] = useState("id");
   const [sortArrow, setSortArrow] = useState(false);
-  const [range, setRange] = useState("0");
-
-  console.log("range", range);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));

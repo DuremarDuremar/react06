@@ -18,8 +18,10 @@ export const Add = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 0;
-  box-shadow: 0 0 28px 28px #00223e inset;
-  border-radius: 30px;
+  box-shadow: 0 0 16px 16px #00223e inset;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+
   button {
     width: 100px;
     height: 100px;
@@ -27,6 +29,7 @@ export const Add = styled.div`
     background-color: rgb(242, 153, 74, 0.5);
     color: #00223e;
     transition: 0.35s ease-in-out all;
+
     &:hover {
       background-color: rgb(242, 153, 74, 1);
     }
@@ -35,8 +38,10 @@ export const Add = styled.div`
 
 export const Info = styled.div`
   background: linear-gradient(to left, #f2c94c, #f2994a);
-  border-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   flex: 0 0 80%;
+  box-shadow: 78px 0 18px 10px #00223e inset;
 `;
 
 export const InfoItem = styled.ul`
