@@ -10,10 +10,16 @@ const App = () => {
   const [info, setInfo] = useState(null);
   const [modal, setModal] = useState(false);
   const [range, setRange] = useState("0");
-  console.log("range", range);
-  console.log("items", items);
+  const [loader, setLoader] = useState(false);
+  // console.log("range", range);
+  // console.log("items", items);
+
+  console.log(loader);
+
   useEffect(() => {
+    setLoader(true);
     getAxios(range).then((response) => {
+      setLoader(false);
       setItems(response);
     });
   }, [range]);
@@ -30,6 +36,7 @@ const App = () => {
               setInfo={setInfo}
               range={range}
               setRange={setRange}
+              loader={loader}
             />
             <Footer info={info} setModal={setModal} />
             <Inputs

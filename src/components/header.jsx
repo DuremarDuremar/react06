@@ -18,7 +18,7 @@ import logo from "../images/logo.png";
 import { chunk, sortBy } from "lodash";
 import { searchItems } from "../util/search";
 
-const Header = ({ items, info, setInfo, range, setRange }) => {
+const Header = ({ items, info, setInfo, range, setRange, loader }) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
   const [menu, setMenu] = useState(false);
@@ -40,8 +40,8 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
     });
   }, [sort, sortArrow]);
 
-  console.log("vis", visibl);
-  console.log("pag", pag);
+  // console.log("vis", visibl);
+  // console.log("pag", pag);
   // console.log(sortItems.length - 1);
 
   const onSearch = (e) => {
@@ -174,6 +174,7 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
           )}
         </Item>
         {sortItems &&
+          !loader &&
           sortItems[pag].map((item, index) => {
             return (
               <Item
@@ -190,7 +191,7 @@ const Header = ({ items, info, setInfo, range, setRange }) => {
             );
           })}
       </List>
-      {sortItems && (
+      {sortItems && !loader && (
         <Pagination>
           {Number(range) && visibl[0] !== 0 ? (
             <>
