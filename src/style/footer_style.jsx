@@ -9,19 +9,26 @@ export const ContentFooter = styled.section`
 `;
 
 export const Add = styled.div`
-  background: linear-gradient(to top, #ffa17f, #00223e);
+  /* background: linear-gradient(to top, #ffa17f, #00223e); */
   flex: 0 0 20%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(${fon});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 0;
+  box-shadow: 0 0 28px 28px #00223e inset;
+  border-radius: 30px;
   button {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #c0c0c0;
+    background-color: rgb(242, 153, 74, 0.5);
+    color: #00223e;
     transition: 0.35s ease-in-out all;
     &:hover {
-      background-color: #708090;
+      background-color: rgb(242, 153, 74, 1);
     }
   }
 `;

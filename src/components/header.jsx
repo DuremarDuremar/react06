@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   ContentHeader,
   Search,
+  Left,
   Form,
   Options,
   Logo,
+  Range,
+  Title,
   List,
   Pagination,
   PagLi,
@@ -23,6 +26,9 @@ const Header = ({ items, info, setInfo }) => {
   const [value, setValue] = useState("");
   const [sort, setSort] = useState("id");
   const [sortArrow, setSortArrow] = useState(false);
+  const [range, setRange] = useState("0");
+
+  console.log("range", range);
 
   useEffect(() => {
     setSortItems(chunk(items, 10));
@@ -63,35 +69,52 @@ const Header = ({ items, info, setInfo }) => {
   return (
     <ContentHeader>
       <Search>
-        <Options onClick={() => setMenu(!menu)} menu={menu}>
-          <i
-            className={
-              menu
-                ? "fas fa-chevron-circle-up fa-2x"
-                : "fas fa-chevron-circle-down fa-2x"
-            }
-          ></i>
-          <ul>
-            {["id", "first name", "last name"].map((item, index) => {
-              return (
-                <li key={index} onClick={() => setSearch(item)}>
-                  {item}
-                </li>
-              );
-            })}
-          </ul>
-        </Options>
-        <Logo>
-          <img src={logo} alt="logo" />
-        </Logo>
-        <Form>
+        <Left>
+          <Options onClick={() => setMenu(!menu)} menu={menu}>
+            <i
+              className={
+                menu
+                  ? "fas fa-chevron-circle-up fa-2x"
+                  : "fas fa-chevron-circle-down fa-2x"
+              }
+            ></i>
+            <ul>
+              {["id", "first name", "last name"].map((item, index) => {
+                return (
+                  <li key={index} onClick={() => setSearch(item)}>
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+          </Options>
+          <Logo>
+            <img src={logo} alt="logo" />
+          </Logo>
+          <Form>
+            <input
+              type="text"
+              value={value}
+              placeholder={search}
+              onChange={(e) => onSearch(e.target.value)}
+            />
+          </Form>
+        </Left>
+        <Range>
           <input
-            type="text"
-            value={value}
-            placeholder={search}
-            onChange={(e) => onSearch(e.target.value)}
+            type="range"
+            max="1"
+            min="0"
+            value={range}
+            onChange={(e) => setRange(e.target.value)}
           />
-        </Form>
+        </Range>
+        <Title>
+          <div>
+            <h1> Some</h1>
+            <span>List</span>
+          </div>
+        </Title>
       </Search>
       <List>
         <Item>

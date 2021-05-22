@@ -13,7 +13,14 @@ export const ContentHeader = styled.section`
 export const Search = styled.div`
   flex: 0 0 15%;
   background: linear-gradient(to right, #f2c94c, #f2994a);
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Left = styled.div`
   position: relative;
+  flex: 0 0 38%;
 `;
 
 export const Form = styled.form`
@@ -79,6 +86,42 @@ export const Logo = styled.div`
   }
 `;
 
+export const Title = styled.div`
+  /* margin-top: -22px; */
+  flex: 0 0 32%;
+
+  div {
+    font-family: "Open Sans";
+    z-index: 3;
+    transform: rotate(-10deg) skew(-20deg);
+    position: relative;
+    text-align: center;
+    max-width: 300px;
+
+    h1 {
+      -webkit-text-stroke: 2px #f4c6f4;
+      color: #00223e;
+      font-size: calc(70px + 1vw);
+    }
+    span {
+      top: calc(20px + 1vw);
+      /* left: calc(10px + 1.6vw); */
+      position: absolute;
+      -webkit-text-stroke: 2px #00223e;
+      color: #f4c6f4;
+      font-size: calc(75px + 1vw);
+    }
+  }
+`;
+
+export const Range = styled.div`
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
 export const List = styled.div`
   flex: 0 0 75%;
   background: linear-gradient(to bottom, #ffa17f, #00223e);
@@ -101,6 +144,7 @@ export const PagLi = styled.li`
   cursor: pointer;
   transition: 0.15s ease-in-out all;
   font-style: italic;
+  margin-bottom: 20px;
   &:not(:last-child) {
     margin-right: 5px;
   }
