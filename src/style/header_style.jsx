@@ -101,15 +101,19 @@ export const Title = styled.div`
     h1 {
       -webkit-text-stroke: 2px #f4c6f4;
       color: #00223e;
-      font-size: calc(70px + 1vw);
+      font-size: ${(props) =>
+        !props.error ? "calc(70px + 1vw)" : "calc(50px + 1vw)"};
     }
     span {
-      top: calc(20px + 1vw);
+      top: ${(props) =>
+        !props.error ? "calc(20px + 1vw)" : "calc(55px + 1.5vw)"};
       /* left: calc(10px + 1.6vw); */
+      right: ${(props) => props.error && "calc(20px + 1vw)"};
       position: absolute;
       -webkit-text-stroke: 2px #00223e;
       color: #f4c6f4;
-      font-size: calc(75px + 1vw);
+      font-size: ${(props) =>
+        !props.error ? "calc(75px + 1vw)" : "calc(25px + 1vw)"};
     }
   }
 `;
@@ -165,11 +169,6 @@ export const Range = styled.div`
   }
 `;
 
-export const List = styled.div`
-  flex: 0 0 75%;
-  background: linear-gradient(to bottom, #ffa17f, #00223e);
-`;
-
 export const Pagination = styled.ul`
   flex: 0 0 10%;
   display: flex;
@@ -212,6 +211,11 @@ export const PagLi = styled.li`
   :hover {
     border: 1px solid #fff;
   }
+`;
+
+export const List = styled.div`
+  flex: 0 0 75%;
+  background: linear-gradient(to bottom, #ffa17f, #00223e);
 `;
 
 export const Item = styled.ul`

@@ -18,7 +18,7 @@ const App = () => {
   // console.log("range", range);
   // console.log("items", items);
 
-  console.log(error);
+  // console.log(error);
   useEffect(() => {
     setLoader(true);
     getAxios(range)
@@ -55,6 +55,7 @@ const App = () => {
               range={range}
               setRange={setRange}
               loader={loader}
+              error={error}
             />
             <Footer info={info} setModal={setModal} />
             <Inputs

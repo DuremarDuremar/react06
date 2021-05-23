@@ -14,11 +14,12 @@ import {
   Item,
   ItemLi,
 } from "../style/header_style";
+import Spinner from "./spinner";
 import logo from "../images/logo.png";
 import { chunk, sortBy } from "lodash";
 import { searchItems } from "../util/search";
 
-const Header = ({ items, info, setInfo, range, setRange, loader }) => {
+const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
   const [menu, setMenu] = useState(false);
@@ -145,10 +146,10 @@ const Header = ({ items, info, setInfo, range, setRange, loader }) => {
             onChange={(e) => setRange(e.target.value)}
           />
         </Range>
-        <Title>
+        <Title error={error}>
           <div>
-            <h1> Some</h1>
-            <span>List</span>
+            <h1> {!error ? "Some" : "error..."}</h1>
+            <span>{!error ? "List" : "the data is not updated"}</span>
           </div>
         </Title>
       </Search>
@@ -178,8 +179,7 @@ const Header = ({ items, info, setInfo, range, setRange, loader }) => {
             }
           )}
         </Item>
-        {sortItems &&
-          !loader &&
+        {sortItems && !loader ? (
           sortItems[pag].map((item, index) => {
             return (
               <Item
@@ -194,7 +194,10 @@ const Header = ({ items, info, setInfo, range, setRange, loader }) => {
                 <ItemLi>{item.phone}</ItemLi>
               </Item>
             );
-          })}
+          })
+        ) : (
+          <Spinner />
+        )}
       </List>
       {sortItems && !loader && (
         <Pagination>
