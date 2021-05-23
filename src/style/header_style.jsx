@@ -28,12 +28,16 @@ export const Form = styled.form`
   input {
     position: absolute;
     top: 20px;
-    left: 150px;
+    left: ${(props) => (props.res700 ? "150px" : "100px")};
     height: 30px;
     font-size: 15px;
     font-style: italic;
     padding-left: 5px;
     border-radius: 5px;
+    z-index: ${(props) => !props.res700 && "4"};
+    background-color: rgb(201, 214, 255);
+    opacity: ${(props) => (!props.res700 ? "0.7" : "0.9")};
+
     &::placeholder {
       color: rgb(112, 128, 144, 0.5);
     }
@@ -46,10 +50,9 @@ export const Options = styled.div`
   text-align: center;
   cursor: pointer;
   position: relative;
-
   i {
     position: relative;
-    z-index: 3;
+    z-index: 5;
     background-color: #f2c94c;
     border-radius: 50%;
   }
@@ -58,7 +61,7 @@ export const Options = styled.div`
     background-color: rgb(0, 34, 62, 0.7);
     transform: ${(props) =>
       props.menu ? "translateY(-10px)" : "translateY(-110px)"};
-    z-index: 1;
+    z-index: 4;
     left: 4px;
     width: 130px;
     height: 70px;
@@ -90,13 +93,20 @@ export const Logo = styled.div`
 export const Title = styled.div`
   flex: ${(props) => (props.res1000 ? "0 0 32%" : "1 1 auto")};
 
+  ${(props) =>
+    !props.res700 &&
+    `
+      margin-right: auto;
+      margin-left: 0;
+      max-width: 220px;
+      overflow: hidden;
+      `}
   div {
     font-family: "Open Sans";
     z-index: 3;
     transform: rotate(-10deg) skew(-20deg);
     position: relative;
     text-align: center;
-    max-width: 300px;
     margin: 0px auto;
     h1 {
       -webkit-text-stroke: 2px #f4c6f4;
@@ -123,10 +133,13 @@ export const Range = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 120px;
   height: 100%;
   position: relative;
+  left: ${(props) => props.res700 && "75px"};
   bottom: ${(props) => !props.res1000 && "32px"};
-  z-index: 3;
+  z-index: ${(props) => props.res700 && "3"};
+  /* z-index: 3; */
   input {
     outline: 0;
     border: 0;
@@ -220,7 +233,9 @@ export const List = styled.div`
   flex: 0 0 75%;
   background: linear-gradient(to bottom, #ffa17f, #00223e);
   overflow-y: ${(props) => (props.res700 ? "hidden" : "scroll")};
-  max-height: 100%;
+  display: ${(props) => (props.res700 ? "block" : "grid")};
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
 `;
 
 export const Item = styled.ul`
@@ -228,47 +243,58 @@ export const Item = styled.ul`
   transition: 0.25s ease-in-out all;
   text-align: center;
   overflow-x: auto;
-  min-width: 300px;
+
   &:not(:first-child) {
     color: ${(props) => (props.active ? "#fff" : "black")};
     font-weight: ${(props) => (props.active ? "700" : "500")};
     border-top: 1px solid #8b4513;
     cursor: pointer;
-    display: ${(props) => (props.res700 ? "flex" : "grid")};
+    min-height: ${(props) => !props.res700 && "125px"};
+    display: ${(props) => (props.res700 ? "flex" : "block")};
     &:hover {
-      background-color: #fff;
+      background-color: #c9d6ff;
     }
   }
   &:first-child {
-    display: flex;
     border-top: 6px solid #8b4513;
     font-size: 20px;
     font-style: italic;
     height: 50px;
     z-index: 2;
     position: relative;
+    grid-column: span 2 / auto;
+    display: flex;
+    justify-content: ${(props) => !props.res700 && "space-around"};
     li {
       text-transform: capitalize;
+      span {
+      }
     }
+  }
+  li {
+    ${(props) =>
+      props.res700 &&
+      `
+    &:nth-child(1) {
+    flex: 0 0 10%;
+  }
+    &:nth-child(2) {
+    flex: 0 0 20%;
+  }
+    &:nth-child(3) {
+    flex: 0 0 20%;
+  }
+    &:nth-child(4) {
+    flex: 0 0 32%;
+  }
+    &:nth-child(5) {
+    flex: 0 0 18%;
+  }
+  `}
   }
 `;
 
 export const ItemLi = styled.li`
-  &:nth-child(1) {
-    flex: 0 0 10%;
-  }
-  &:nth-child(2) {
-    flex: 0 0 20%;
-  }
-  &:nth-child(3) {
-    flex: 0 0 20%;
-  }
-  &:nth-child(4) {
-    flex: 0 0 32%;
-  }
-  &:nth-child(5) {
-    flex: 0 0 18%;
-  }
   p {
     color: ${(props) => (props.change ? "#fff" : "black")};
     cursor: pointer;

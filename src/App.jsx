@@ -23,7 +23,8 @@ const App = () => {
 
   const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
   const res700 = useMediaQuery({ query: "(min-width: 700px)" });
-  console.log(res1000);
+  const res500 = useMediaQuery({ query: "(min-width: 500px)" });
+
   useEffect(() => {
     setLoader(true);
     getAxios(range)
@@ -64,7 +65,13 @@ const App = () => {
               res1000={res1000}
               res700={res700}
             />
-            <Footer info={info} setModal={setModal} />
+            <Footer
+              info={info}
+              setModal={setModal}
+              res1000={res1000}
+              res700={res700}
+              res500={res500}
+            />
             <Inputs
               modal={modal}
               setModal={setModal}

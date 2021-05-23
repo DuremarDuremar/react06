@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Modal = styled.div`
   display: ${(props) => (props.modal ? "flex" : "none")};
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
@@ -12,7 +12,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 3;
+  z-index: 7;
 `;
 
 export const Form = styled.form`

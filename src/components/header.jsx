@@ -86,7 +86,7 @@ const Header = ({
   };
 
   const renderRange = (
-    <Range res1000={res1000}>
+    <Range res1000={res1000} res700={res700}>
       <input
         type="range"
         max="1"
@@ -150,7 +150,7 @@ const Header = ({
           <Logo>
             <img src={logo} alt="logo" />
           </Logo>
-          <Form>
+          <Form res700={res700}>
             <input
               type="text"
               value={value}
@@ -161,7 +161,7 @@ const Header = ({
           {!res1000 && renderRange}
         </Left>
         {res1000 && renderRange}
-        <Title error={error} res1000={res1000}>
+        <Title error={error} res1000={res1000} res700={res700}>
           <div>
             <h1> {!error ? "Some" : "error..."}</h1>
             <span>{!error ? "List" : "the data is not updated"}</span>
@@ -169,7 +169,7 @@ const Header = ({
         </Title>
       </Search>
       <List res700={res700}>
-        <Item menu>
+        <Item res700={res700}>
           {["id", "firstName", "lastName", "email", "phone"].map(
             (item, index) => {
               return (
@@ -199,7 +199,11 @@ const Header = ({
             return (
               <Item
                 key={index}
-                active={info && item.id === info.id ? 1 : 0}
+                active={
+                  info && item.id === info.id && item.phone === info.phone
+                    ? 1
+                    : 0
+                }
                 onClick={() => setInfo(item)}
                 res700={res700}
               >
