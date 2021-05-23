@@ -19,7 +19,17 @@ import logo from "../images/logo.png";
 import { chunk, sortBy } from "lodash";
 import { searchItems } from "../util/search";
 
-const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
+const Header = ({
+  items,
+  info,
+  setInfo,
+  range,
+  setRange,
+  loader,
+  error,
+  res1000,
+  res700,
+}) => {
   const [sortItems, setSortItems] = useState(null);
   const [pag, setPag] = useState(0);
   const [menu, setMenu] = useState(false);
@@ -74,6 +84,18 @@ const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
       );
     });
   };
+
+  const renderRange = (
+    <Range res1000={res1000}>
+      <input
+        type="range"
+        max="1"
+        min="0"
+        value={range}
+        onChange={(e) => setRange(e.target.value)}
+      />
+    </Range>
+  );
 
   const slider = (arg, double) => {
     if (arg === "next") {
@@ -136,25 +158,18 @@ const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
               onChange={(e) => onSearch(e.target.value)}
             />
           </Form>
+          {!res1000 && renderRange}
         </Left>
-        <Range>
-          <input
-            type="range"
-            max="1"
-            min="0"
-            value={range}
-            onChange={(e) => setRange(e.target.value)}
-          />
-        </Range>
-        <Title error={error}>
+        {res1000 && renderRange}
+        <Title error={error} res1000={res1000}>
           <div>
             <h1> {!error ? "Some" : "error..."}</h1>
             <span>{!error ? "List" : "the data is not updated"}</span>
           </div>
         </Title>
       </Search>
-      <List>
-        <Item>
+      <List res700={res700}>
+        <Item menu>
           {["id", "firstName", "lastName", "email", "phone"].map(
             (item, index) => {
               return (
@@ -186,6 +201,7 @@ const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
                 key={index}
                 active={info && item.id === info.id ? 1 : 0}
                 onClick={() => setInfo(item)}
+                res700={res700}
               >
                 <ItemLi>{item.id}</ItemLi>
                 <ItemLi>{item.firstName}</ItemLi>
@@ -195,7 +211,7 @@ const Header = ({ items, info, setInfo, range, setRange, loader, error }) => {
               </Item>
             );
           })
-        ) : (
+        ) : !sortItems && !loader ? null : (
           <Spinner />
         )}
       </List>

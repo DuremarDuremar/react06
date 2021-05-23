@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import { getAxios } from "./components/axios";
 import Inputs from "./components/inputs";
 import Server from "./components/data";
+import { useMediaQuery } from "react-responsive";
 
 const dataServer = new Server();
 
@@ -19,6 +20,10 @@ const App = () => {
   // console.log("items", items);
 
   // console.log(error);
+
+  const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
+  const res700 = useMediaQuery({ query: "(min-width: 700px)" });
+  console.log(res1000);
   useEffect(() => {
     setLoader(true);
     getAxios(range)
@@ -45,7 +50,7 @@ const App = () => {
   return (
     <>
       <Global></Global>
-      <Content>
+      <Content res700={res700}>
         {items && (
           <>
             <Header
@@ -56,6 +61,8 @@ const App = () => {
               setRange={setRange}
               loader={loader}
               error={error}
+              res1000={res1000}
+              res700={res700}
             />
             <Footer info={info} setModal={setModal} />
             <Inputs

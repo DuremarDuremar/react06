@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContentHeader = styled.section`
   flex: 0 0 75%;
   background-color: #00223e;
-  overflow-y: hidden;
+  /* overflow-x: hidden; */
   display: flex;
   flex-direction: column;
   padding: 5px 0;
@@ -21,6 +21,7 @@ export const Search = styled.div`
 export const Left = styled.div`
   position: relative;
   flex: 0 0 38%;
+  width: 100%;
 `;
 
 export const Form = styled.form`
@@ -87,8 +88,7 @@ export const Logo = styled.div`
 `;
 
 export const Title = styled.div`
-  /* margin-top: -22px; */
-  flex: 0 0 32%;
+  flex: ${(props) => (props.res1000 ? "0 0 32%" : "1 1 auto")};
 
   div {
     font-family: "Open Sans";
@@ -97,7 +97,7 @@ export const Title = styled.div`
     position: relative;
     text-align: center;
     max-width: 300px;
-
+    margin: 0px auto;
     h1 {
       -webkit-text-stroke: 2px #f4c6f4;
       color: #00223e;
@@ -124,12 +124,15 @@ export const Range = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-
+  position: relative;
+  bottom: ${(props) => !props.res1000 && "32px"};
+  z-index: 3;
   input {
     outline: 0;
     border: 0;
     position: absolute;
-    transform: translateX(-50%);
+    transform: ${(props) =>
+      props.res1000 ? "translateX(-50%)" : "translateX(0)"};
     left: 50%;
     width: 80px;
     max-width: 100%;
@@ -216,10 +219,11 @@ export const PagLi = styled.li`
 export const List = styled.div`
   flex: 0 0 75%;
   background: linear-gradient(to bottom, #ffa17f, #00223e);
+  overflow-y: ${(props) => (props.res700 ? "hidden" : "scroll")};
+  max-height: 100%;
 `;
 
 export const Item = styled.ul`
-  display: flex;
   padding: 5px;
   transition: 0.25s ease-in-out all;
   text-align: center;
@@ -230,11 +234,13 @@ export const Item = styled.ul`
     font-weight: ${(props) => (props.active ? "700" : "500")};
     border-top: 1px solid #8b4513;
     cursor: pointer;
+    display: ${(props) => (props.res700 ? "flex" : "grid")};
     &:hover {
       background-color: #fff;
     }
   }
   &:first-child {
+    display: flex;
     border-top: 6px solid #8b4513;
     font-size: 20px;
     font-style: italic;

@@ -42,12 +42,13 @@ input{
 `;
 
 export const Content = styled.div`
+  margin: 0px auto;
   max-width: 1366px;
   height: 768px;
-  /* background-color: #8b4513; */
   padding: 15px 5px 20px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: space-between;
+  /* overflow: hidden; */
   position: relative;
 `;
