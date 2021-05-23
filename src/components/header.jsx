@@ -40,6 +40,11 @@ const Header = ({ items, info, setInfo, range, setRange, loader }) => {
     });
   }, [sort, sortArrow]);
 
+  useEffect(() => {
+    setVisibl([0, 1, 2, 3, 4]);
+    setPag(0);
+  }, [range]);
+
   // console.log("vis", visibl);
   // console.log("pag", pag);
   // console.log(sortItems.length - 1);
