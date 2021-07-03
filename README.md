@@ -1,5 +1,5 @@
 
-получаем данные, сортируем, добавляем, удаляем.
+получаем данные, сортируем, ищем, добавляем, удаляем.
 
 
 <img src="https://s102vla.storage.yandex.net/rdisk/b0a39342f250b3c9e88e3531b5d0c32c1c092dcd6563055e3fd0c851d3680aee/60e11128/hr6EOoOySaVlKHulgMjFSA_yDO-S3dmHTOrmw9O9dMUIDCW3FBRbfS_HCyULq7zUKKtljnA6UjHWJcpc4wTrWA==?uid=27160728&filename=someList_dec1.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=27160728&fsize=202860&hid=19e4ba2bcd798a2fd849758cac7a6036&media_type=image&tknv=v2&etag=d217b73245458734b97731202c9439c6&rtoken=ex54imFMKyBB&force_default=yes&ycrid=na-206c73525eab0827c4a92849417e0de1-downloader14f&ts=5c64240089a00&s=926f7de633f5fcc9d6dfdd9c8b1d60aa210f47fb18bd16e327bf23f0036c674c&pb=U2FsdGVkX1-ShAF1H_yZFa33MYruB2yetJAzeBWETmgctz16gcI2ia42Zz7f3Jn-ArSRPxbf0kZGib4JFwh-YnW6vmpQOG-M4pxZb7qn7d0" width=660 height=330>
